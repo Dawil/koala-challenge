@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import styled from '@emotion/styled'
-import { css, jsx } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 const Container = styled.div`
   display: flex;
@@ -15,8 +15,8 @@ const Container = styled.div`
   transition: transform 1s ease;
 `
 
-const Card = css`
-  background-color: #e7dfd0;
+const Card = theme => css`
+  background-color: ${theme.colors.background};
   border-radius: 10px;
   max-height: 250px;
   height: 100%;
@@ -29,7 +29,6 @@ const Card = css`
   transition: all 1s ease;
   box-shadow: -5px 5px 3px 2px rgba(200,200,200,0.5);
   position: relative;
-  border: auto;
 `
 
 const Current = css`
@@ -37,10 +36,8 @@ const Current = css`
   height: 80%;
   max-height: 80%;
   margin: 1em 2em;
-  border: auto 4em;
-  flex: 2;
   * {
-    opacity: 1;
+    opacity: 1 !important;
   }
 `
 
@@ -87,11 +84,12 @@ export const Slider = ({children}) => {
 }
 
 export const Slide = ({state, onClick, children}) => {
+  const theme = useTheme()
   const classes = {
-    "-1": [Card, Prev],
-    "0": [Card, Current],
-    "1": [Card, Next],
-  }[state] || [Card]
+    "-1": [Card(theme), Prev],
+    "0": [Card(theme), Current],
+    "1": [Card(theme), Next],
+  }[state] || [Card(theme)]
   return (
     <div css={[...classes]} onClick={onClick}>
       {children}

@@ -2,19 +2,25 @@ import styled from '@emotion/styled'
 
 const Header = styled.h1`
   margin: 0;
-  text-align: left;
+  align: left;
   font-weight: normal;
+  text-align: left;
+  color: ${props => props.theme.colors.text};
 `
 
 const SubHeading = styled.p`
   margin: 0;
   font-size: 10pt;
+  align: left;
   text-align: left;
+  color: ${props => props.theme.colors.text};
 `
 
 const Summary = styled.p`
-  text-align: left;
+  align: left;
   font-size: 16pt;
+  text-align: left;
+  color: ${props => props.theme.colors.text};
 `
 
 const Img = styled.img`
@@ -27,15 +33,18 @@ const Img = styled.img`
 const Temp = styled.p`
   font-size: 28pt;
   font-weight: bold;
+  text-align: left;
+  color: ${props => props.theme.colors.text};
 `
 
 const City = styled.p`
-  text-align: left;
   font-size: 16pt;
   position: absolute;
   opacity: 0;
   bottom: 0;
   transition: all 1s ease;
+  text-align: left;
+  color: ${props => props.theme.colors.text};
 `
 
 const getDay = date =>

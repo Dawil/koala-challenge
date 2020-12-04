@@ -23,56 +23,49 @@ const groupByDate = data => {
 
 const Weather = ({userCity, location}) => {
   const [city, setCity] = useState(userCity)
-  console.log("CITY", city)
   const { isLoading, error, data } = useQuery(['weatherData', city], () =>
-//    new Promise(resolve =>
-//      resolve(JSON.parse(localStorage.getItem('query'))[0].data)
-//    )
-    city
-    ? fetch(makeCityURL(city)).then(res =>
-        res.json()
-      )
-    : fetch(makeLocationURL(location)).then(res =>
-        res.json()
-      )
-  )
-  const [activeCardIndex, setActiveCardIndex] = useState(1)
-
-  if (isLoading) {
-    return (
-      <p>Loading...</p>
+    new Promise(resolve =>
+      resolve(JSON.parse(localStorage.getItem('query'))[0].data)
     )
-  }
+//    city
+//    ? fetch(makeCityURL(city)).then(res =>
+//        res.json()
+//      )
+//    : fetch(makeLocationURL(location)).then(res =>
+//        res.json()
+//      )
+  )
 
   if (error) {
-    return (
-      <p>There was an error loading weather data.</p>
-    )
+    alert("There was an error loading weather data")
+    return null
   }
 
-  const days = groupByDate(data)
+  const days = !isLoading && groupByDate(data)
 
   return (
     <>
       <CityInput
         onChange={setCity}
       />
-      <Slider
-        days={days}
-        city={data.city.name}
-      >
-        {Object.entries(days).map((entry, i) => {
-          const [date, forecast] = entry
-          return (
-            <Card
-              key={i}
-              date={date}
-              forecast={forecast}
-              city={data.city.name}
-            />
-          )
-        })}
-      </Slider>
+      { !isLoading && (
+        <Slider
+          days={days}
+          city={data.city.name}
+        >
+          {Object.entries(days).map((entry, i) => {
+            const [date, forecast] = entry
+            return (
+              <Card
+                key={i}
+                date={date}
+                forecast={forecast}
+                city={data.city.name}
+              />
+            )
+          })}
+        </Slider>
+      )}
     </>
   )
 }
