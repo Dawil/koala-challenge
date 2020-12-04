@@ -24,16 +24,16 @@ const groupByDate = data => {
 const Weather = ({userCity, location}) => {
   const [city, setCity] = useState(userCity)
   const { isLoading, error, data } = useQuery(['weatherData', city], () =>
-    new Promise(resolve =>
-      resolve(JSON.parse(localStorage.getItem('query'))[0].data)
-    )
-//    city
-//    ? fetch(makeCityURL(city)).then(res =>
-//        res.json()
-//      )
-//    : fetch(makeLocationURL(location)).then(res =>
-//        res.json()
-//      )
+//    new Promise(resolve =>
+//      resolve(JSON.parse(localStorage.getItem('query'))[0].data)
+//    )
+    city
+    ? fetch(makeCityURL(city)).then(res =>
+        res.json()
+      )
+    : fetch(makeLocationURL(location)).then(res =>
+        res.json()
+      )
   )
 
   if (error) {

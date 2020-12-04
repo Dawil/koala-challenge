@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Locator from './Locator.js'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import styled from '@emotion/styled'
-import { ThemeProvider, css, jsx } from '@emotion/react'
+import { ThemeProvider } from '@emotion/react'
 import { useState } from 'react'
 
 const queryCache = new QueryCache()

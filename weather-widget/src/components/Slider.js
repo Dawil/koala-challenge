@@ -4,6 +4,10 @@ import { useState, useCallback, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { css, useTheme } from '@emotion/react'
 
+const OuterContainer = styled.div`
+  overflow: hidden;
+`
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -35,7 +39,7 @@ const Current = css`
   opacity: 1;
   height: 80%;
   max-height: 80%;
-  margin: 1em 2em;
+  margin: 1em 1em;
   * {
     opacity: 1 !important;
   }
@@ -57,8 +61,9 @@ export const Slider = ({children}) => {
   , [])
   const [totalWidth, setTotalWidth] = useState(window.innerWidth)
 
+  const childCount = containerEl ? containerEl.children.length : 6
   let width = containerEl ? containerEl.children[0].offsetWidth : 205 // guess
-  let scrollWidth = containerEl ? containerEl.scrollWidth : width*6
+  let scrollWidth = containerEl ? containerEl.scrollWidth : width*childCount
 
   useEffect(() =>
     window.addEventListener("resize", () =>
@@ -67,19 +72,21 @@ export const Slider = ({children}) => {
   )
 
   return (
-    <Container ref={setContainer} style={{ transform: `translateX(${totalWidth/2 - width/2 + activeCardIndex * - scrollWidth/6}px)` }}>
-      {children.map((child, i) => {
-        return (
-          <Slide
-            key={i}
-            state={i - activeCardIndex}
-            onClick={() => setActiveCardIndex(i)}
-          >
-            {child}
-          </Slide>
-        )
-      })}
-    </Container>
+    <OuterContainer>
+      <Container ref={setContainer} style={{ transform: `translateX(${totalWidth/2 - width/2 + activeCardIndex * -scrollWidth/6}px)` }}>
+        {children.map((child, i) => {
+          return (
+            <Slide
+              key={i}
+              state={i - activeCardIndex}
+              onClick={() => setActiveCardIndex(i)}
+            >
+              {child}
+            </Slide>
+          )
+        })}
+      </Container>
+    </OuterContainer>
   )
 }
 
