@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query'
 import { useState } from 'react'
 import Card from './Card.js'
+import { Slider } from './components/Slider.js'
 
 const API_KEY = "ede9c8f8660863bcfcc189d771d12cfc"
 
@@ -49,22 +50,22 @@ const Weather = ({city, location}) => {
   const days = groupByDate(data)
 
   return (
-    <div className="Card-Container" style={{ transform: `translateX(${200 + activeCardIndex * -200}px)` }}>
+    <Slider
+      days={days}
+      city={data.city.name}
+    >
       {Object.entries(days).map((entry, i) => {
         const [date, forecast] = entry
-        const state = i - activeCardIndex
         return (
           <Card
             key={i}
-            state={state}
             date={date}
-            onClick={() => setActiveCardIndex(i)}
             forecast={forecast}
             city={data.city.name}
           />
         )
       })}
-    </div>
+    </Slider>
   )
 }
 

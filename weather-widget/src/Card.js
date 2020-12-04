@@ -46,16 +46,11 @@ const formatDate = dateText => {
 const getIconURL = iconID =>
   `http://openweathermap.org/img/wn/${iconID}@2x.png`
 
-const Card = ({date, forecast, state, city, onClick}) => {
+const Card = ({date, forecast, city}) => {
   const [min, max] = getMinMax(forecast)
-  const classes = {
-    "-1": "Card Prev",
-    "0": "Card Current",
-    "1": "Card Next",
-  }[state] || "Card"
 
   return (
-    <div className={classes} onClick={onClick}>
+    <div>
       <h1 className="Card-heading">{getDay(date)}</h1>
       <p className="Card-subheading">{formatDate(max.dt_txt)}</p>
       <p className="Card-summary">{capitalize(max.weather[0].description)}</p>
@@ -64,7 +59,7 @@ const Card = ({date, forecast, state, city, onClick}) => {
         alt={capitalize(max.weather[0].description)}
         className="Card-img"/>
       <p className="Card-temp">{Math.round(max.main.temp - 273)}&deg;C</p>
-      <p className={`Card-city ${state == 0 ? "active" : ""}`}>{city}</p>
+      <p className="Card-city">{city}</p>
     </div>
   )
 }
