@@ -1,3 +1,43 @@
+import styled from '@emotion/styled'
+
+const Header = styled.h1`
+  margin: 0;
+  text-align: left;
+  font-weight: normal;
+`
+
+const SubHeading = styled.p`
+  margin: 0;
+  font-size: 10pt;
+  text-align: left;
+`
+
+const Summary = styled.p`
+  text-align: left;
+  font-size: 16pt;
+`
+
+const Img = styled.img`
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-top: 14px;
+`
+
+const Temp = styled.p`
+  font-size: 28pt;
+  font-weight: bold;
+`
+
+const City = styled.p`
+  text-align: left;
+  font-size: 16pt;
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  transition: all 1s ease;
+`
+
 const getDay = date =>
   ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][
     new Date(date).getDay()
@@ -51,15 +91,15 @@ const Card = ({date, forecast, city}) => {
 
   return (
     <div>
-      <h1 className="Card-heading">{getDay(date)}</h1>
-      <p className="Card-subheading">{formatDate(max.dt_txt)}</p>
-      <p className="Card-summary">{capitalize(max.weather[0].description)}</p>
-      <img
+      <Header>{getDay(date)}</Header>
+      <SubHeading>{formatDate(max.dt_txt)}</SubHeading>
+      <Summary>{capitalize(max.weather[0].description)}</Summary>
+      <Img
         src={getIconURL(max.weather[0].icon)}
         alt={capitalize(max.weather[0].description)}
-        className="Card-img"/>
-      <p className="Card-temp">{Math.round(max.main.temp - 273)}&deg;C</p>
-      <p className="Card-city">{city}</p>
+      />
+      <Temp>{Math.round(max.main.temp - 273)}&deg;C</Temp>
+      <City>{city}</City>
     </div>
   )
 }

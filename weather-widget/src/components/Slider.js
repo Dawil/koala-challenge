@@ -1,4 +1,56 @@
+/** @jsxImportSource @emotion/react */
+
 import { useState, useCallback, useEffect } from 'react'
+import styled from '@emotion/styled'
+import { css, jsx } from '@emotion/react'
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 3em 0;
+  height: 450px;
+  max-width: 200%;
+  min-width: 600px;
+  width: auto;
+  transition: transform 1s ease;
+`
+
+const Card = css`
+  background-color: #e7dfd0;
+  border-radius: 10px;
+  max-height: 250px;
+  height: 100%;
+  opacity: 0;
+  width: 200px;
+  min-width: 170px;
+  max-width:200px;
+  margin: 2em 1em;
+  padding: 1rem ;
+  transition: all 1s ease;
+  box-shadow: -5px 5px 3px 2px rgba(200,200,200,0.5);
+  position: relative;
+  border: auto;
+`
+
+const Current = css`
+  opacity: 1;
+  height: 80%;
+  max-height: 80%;
+  margin: 1em 2em;
+  border: auto 4em;
+  flex: 2;
+  * {
+    opacity: 1;
+  }
+`
+
+const Prev = css`
+  opacity: 1;
+`
+
+const Next = css`
+  opacity: 1;
+`
 
 export const Slider = ({children}) => {
   const [activeCardIndex, setActiveCardIndex] = useState(1)
@@ -18,7 +70,7 @@ export const Slider = ({children}) => {
   )
 
   return (
-    <div ref={setContainer} className="Card-Container" style={{ transform: `translateX(${totalWidth/2 - width/2 + activeCardIndex * - scrollWidth/6}px)` }}>
+    <Container ref={setContainer} style={{ transform: `translateX(${totalWidth/2 - width/2 + activeCardIndex * - scrollWidth/6}px)` }}>
       {children.map((child, i) => {
         return (
           <Slide
@@ -30,18 +82,18 @@ export const Slider = ({children}) => {
           </Slide>
         )
       })}
-    </div>
+    </Container>
   )
 }
 
 export const Slide = ({state, onClick, children}) => {
   const classes = {
-    "-1": "Card Prev",
-    "0": "Card Current",
-    "1": "Card Next",
-  }[state] || "Card"
+    "-1": [Card, Prev],
+    "0": [Card, Current],
+    "1": [Card, Next],
+  }[state] || [Card]
   return (
-    <div className={classes} onClick={onClick}>
+    <div css={[...classes]} onClick={onClick}>
       {children}
     </div>
   )
