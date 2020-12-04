@@ -123,3 +123,11 @@ body {
 .Card.Current .Card-city {
   opacity: 1;
 }
+
+.City-Input {
+  position: absolute;
+  top: 1em;
+  margin: auto;
+  left: 0;
+  right: 0;
+}

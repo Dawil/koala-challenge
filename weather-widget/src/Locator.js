@@ -13,7 +13,7 @@ const Locator = props => {
   }
 
   if (error) {
-    return <Weather city="Sydney"/>
+    return <Weather userCity="Sydney"/>
   }
 
   return <Weather location={data}/>
