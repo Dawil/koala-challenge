@@ -4,8 +4,11 @@ import Card from './Card.js'
 
 const API_KEY = "ede9c8f8660863bcfcc189d771d12cfc"
 
-const makeURL = city =>
+const makeCityURL = city =>
   `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`
+
+const makeLocationURL = location =>
+  `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=${API_KEY}`
 
 const groupByDate = data => {
   const days = new Map()
@@ -16,17 +19,20 @@ const groupByDate = data => {
   return days
 }
 
-const Weather = props => {
+const Weather = ({city, location}) => {
   const { isLoading, error, data } = useQuery('weatherData', () =>
     new Promise(resolve =>
       resolve(JSON.parse(localStorage.getItem('query'))[0].data)
     )
-//    fetch(makeURL('Sydney')).then(res =>
-//      res.json()
-//    )
+//    city
+//    ? fetch(makeCityURL('Sydney')).then(res =>
+//        res.json()
+//      )
+//    : fetch(makeLocationURL(location)).then(res =>
+//        res.json()
+//      )
   )
   const [activeCardIndex, setActiveCardIndex] = useState(1)
-  window.setActiveCardIndex = setActiveCardIndex
 
   if (isLoading) {
     return (
@@ -41,7 +47,6 @@ const Weather = props => {
   }
 
   const days = groupByDate(data)
-  console.log("DATA", data)
 
   return (
     <div className="Card-Container" style={{ transform: `translateX(${200 + activeCardIndex * -200}px)` }}>

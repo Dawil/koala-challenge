@@ -53,7 +53,6 @@ const Card = ({date, forecast, state, city, onClick}) => {
     "0": "Card Current",
     "1": "Card Next",
   }[state] || "Card"
-  console.log(forecast)
 
   return (
     <div className={classes} onClick={onClick}>
