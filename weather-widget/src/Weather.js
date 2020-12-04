@@ -41,13 +41,22 @@ const Weather = props => {
   }
 
   const days = groupByDate(data)
+  console.log("DATA", data)
 
   return (
-    <div className="Card-Container" style={{ transform: `translateX(${200 + activeCardIndex * -185}px)` }}>
+    <div className="Card-Container" style={{ transform: `translateX(${200 + activeCardIndex * -200}px)` }}>
       {Object.entries(days).map((entry, i) => {
-        const [date, data] = entry
+        const [date, forecast] = entry
+        const state = i - activeCardIndex
         return (
-          <Card key={i} state={i-activeCardIndex} date={date} forecast={data}/>
+          <Card
+            key={i}
+            state={state}
+            date={date}
+            onClick={() => setActiveCardIndex(i)}
+            forecast={forecast}
+            city={data.city.name}
+          />
         )
       })}
     </div>
