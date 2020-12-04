@@ -65,7 +65,7 @@ const Card = ({date, forecast, state, city, onClick}) => {
         alt={capitalize(max.weather[0].description)}
         className="Card-img"/>
       <p className="Card-temp">{Math.round(max.main.temp - 273)}&deg;C</p>
-      <p className="Card-city">{city}</p>
+      <p className={`Card-city ${state == 0 ? "active" : ""}`}>{city}</p>
     </div>
   )
 }
