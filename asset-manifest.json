@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/koala-challenge/static/css/main.123d2fff.chunk.css",
+    "main.js": "/koala-challenge/static/js/main.6485b759.chunk.js",
+    "main.js.map": "/koala-challenge/static/js/main.6485b759.chunk.js.map",
+    "runtime-main.js": "/koala-challenge/static/js/runtime-main.49e4e9a4.js",
+    "runtime-main.js.map": "/koala-challenge/static/js/runtime-main.49e4e9a4.js.map",
+    "static/js/2.1c9a6425.chunk.js": "/koala-challenge/static/js/2.1c9a6425.chunk.js",
+    "static/js/2.1c9a6425.chunk.js.map": "/koala-challenge/static/js/2.1c9a6425.chunk.js.map",
+    "static/js/3.ea97ecbd.chunk.js": "/koala-challenge/static/js/3.ea97ecbd.chunk.js",
+    "static/js/3.ea97ecbd.chunk.js.map": "/koala-challenge/static/js/3.ea97ecbd.chunk.js.map",
+    "index.html": "/koala-challenge/index.html",
+    "static/css/main.123d2fff.chunk.css.map": "/koala-challenge/static/css/main.123d2fff.chunk.css.map",
+    "static/js/2.1c9a6425.chunk.js.LICENSE.txt": "/koala-challenge/static/js/2.1c9a6425.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/koala-challenge/static/media/background-sydney.f0f9cda6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.49e4e9a4.js",
+    "static/js/2.1c9a6425.chunk.js",
+    "static/css/main.123d2fff.chunk.css",
+    "static/js/main.6485b759.chunk.js"
+  ]
+}
